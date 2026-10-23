@@ -7,12 +7,11 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends tesseract-ocr \
     && rm -rf /var/lib/apt/lists/*
 
-
 COPY backend/requirements.txt ./backend/requirements.txt
+
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
-
-COPY . ./backend
+COPY backend/ ./backend/
 
 EXPOSE 8000
 

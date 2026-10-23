@@ -13,7 +13,7 @@ RUN apt-get update \
 # Build context is the backend/ folder itself; everything gets copied
 # into /app/backend so `backend.main:app` still resolves as a package
 # (backend/__init__.py makes it one) with the app run from /app.
-COPY requirements.txt ./backend/requirements.txt
+COPY backend/requirements.txt ./backend/requirements.txt
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
 COPY . ./backend

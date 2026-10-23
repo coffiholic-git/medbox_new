@@ -9,8 +9,7 @@
  *  - The Vite dev proxy forwards /api/* to http://localhost:8000 so we use
  *    a relative base URL — no CORS issues in dev.
  */
-
-const API_BASE = "/api";
+const API_BASE = "https://medbox-new-backend.onrender.com";
 const TOKEN_KEY = "medbox_token";
 
 // ── Token helpers ──────────────────────────────────────────────────────────────

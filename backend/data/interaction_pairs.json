@@ -1,0 +1,32 @@
+[
+  {
+    "pair": ["acetaminophen", "acetaminophen"],
+    "severity": "Moderate",
+    "message": "This also contains acetaminophen, like a medicine already in your library — taking both risks exceeding the daily limit. Please confirm the combined dose with your pharmacist before taking both."
+  },
+  {
+    "pair": ["ibuprofen", "acetylsalicylic acid"],
+    "severity": "Moderate",
+    "message": "This is an NSAID, like aspirin already in your library — combining two blood-thinning-adjacent medicines can increase bleeding risk. Please confirm with your pharmacist before taking both."
+  },
+  {
+    "pair": ["ibuprofen", "amlodipine"],
+    "severity": "Low",
+    "message": "NSAIDs like this one can reduce how well amlodipine controls blood pressure. Please confirm with your pharmacist before taking both regularly."
+  },
+  {
+    "pair": ["ibuprofen", "losartan"],
+    "severity": "Moderate",
+    "message": "NSAIDs like this one can reduce the effect of losartan and affect kidney function when combined. Please confirm with your pharmacist before taking both."
+  },
+  {
+    "pair": ["atorvastatin", "azithromycin"],
+    "severity": "Low",
+    "message": "Combining this antibiotic with a statin already in your library can, in rare cases, increase muscle-related side effects. Please confirm with your pharmacist before taking both."
+  },
+  {
+    "pair": ["omeprazole", "atorvastatin"],
+    "severity": "Low",
+    "message": "This may modestly change how your statin is processed. Please confirm with your pharmacist if you notice unusual side effects."
+  }
+]

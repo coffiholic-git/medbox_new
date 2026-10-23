@@ -1,0 +1,54 @@
+fastapi>=0.115.6
+uvicorn[standard]>=0.32.1
+sqlalchemy>=2.0.36
+pydantic>=2.10.3
+PyJWT>=2.10.1
+# Use bcrypt directly (not passlib): recent bcrypt releases work on current
+# Python versions, whereas passlib 1.7.4 probes a removed private attribute.
+bcrypt>=4.1
+APScheduler==3.10.4
+pillow>=11.1.0
+pytesseract==0.3.13
+python-multipart==0.0.20
+pytest==8.3.4
+httpx==0.28.1
+# httpx (above) also powers routers/agent.py's call to the Groq
+# chat completions API — no extra package needed. Set GROQ_API_KEY in the
+# environment before starting the backend for the AI voice assistant to
+# work; without it, /api/agent/chat returns a spoken explanation instead
+# of crashing. Get a free key at https://console.groq.com
+
+# backend/perception — real medicine-recognition pipeline (6.1/6.2/6.6).
+# opencv-python-headless + numpy are required at import time by
+# backend/perception/ocr.py and preprocessing.py. rapidfuzz is not needed
+# here: the pipeline's matching uses difflib (backend/perception/medicine_matcher.py).
+opencv-python-headless>=4.10.0.84
+numpy>=2.0.0
+
+# paddleocr/paddlepaddle back the OPTIONAL primary OCR engine. They are
+# intentionally NOT installed by default:
+#   - They are imported lazily inside PaddleOCREngine.__init__, so nothing
+#     else in the app needs them at import time.
+#   - If they're missing, services/ocr_service.py already falls back to
+#     Tesseract automatically (see perception/pipeline.py _default_primary_engine),
+#     and Tesseract alone is a genuine (not simulated) OCR path.
+#   - paddlepaddle's pinned build only ships wheels for Python 3.11/3.12;
+#     on a newer interpreter `pip install -r requirements.txt` with these
+#     two lines uncommented will fail with a numpy/paddlepaddle resolution
+#     error like "No matching distribution found for paddlepaddle==2.6.2".
+#
+# To use Tesseract only (recommended for most local setups, incl. Windows):
+#   1. Leave the two lines below commented out.
+#   2. Install the Tesseract-OCR binary itself (not just the Python
+#      package, which is already installed above via pytesseract):
+#        Windows: https://github.com/UB-Mannheim/tesseract/wiki
+#        macOS:   brew install tesseract
+#        Linux:   apt-get install tesseract-ocr
+#   3. Make sure `tesseract` is on PATH, or set the TESSERACT_CMD
+#      environment variable to its full path.
+#
+# To also enable PaddleOCR as the primary engine (optional, requires
+# Python 3.11 or 3.12 in this venv):
+#   pip install paddleocr==2.9.1 paddlepaddle==2.6.2
+# paddleocr==2.9.1
+# paddlepaddle==2.6.2
